@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anar: Wealth & Budget Manager</title>
+    <meta name="description" content="Manage Money & Investments with Anar. Track net worth, stocks, crypto, dividends, and your budget in one beautiful app.">
+    
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/app-icon.png">
+</head>
+<body>
+
+    <div class="bento-container">
+        
+        <!-- 1. TOP LEFT: Privacy (Marketing) -->
+        <div class="card corner-card privacy-card">
+            <div class="corner-content">
+                <!-- 
+                     UPDATED LOCK ICON 
+                     1. Path (Shackle) is now first so it sits BEHIND the body.
+                     2. Rect (Body) is filled with Orange.
+                -->
+                <svg class="corner-icon" viewBox="0 0 24 24" fill="none" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <!-- The Shackle (Black Stroke) -->
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="#000000" fill="none" stroke-width="2.5"></path>
+                    <!-- The Body (Orange Fill) -->
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" fill="#FF9500"></rect>
+                </svg>
+                <h3>Privacy First</h3>
+                <p>Your data stays on your device. We never see it.</p>
+            </div>
+        </div>
+
+        <!-- 2. TOP CENTER: Identity & Download (Spans Middle 2 Cols) -->
+        <div class="card identity-card">
+            <div class="identity-content">
+                <div class="icon-wrapper">
+                    <img src="assets/images/app-icon.png" alt="Anar App Icon" class="app-icon" onerror="this.style.display='none';this.parentElement.classList.add('placeholder-icon')">
+                </div>
+                
+                <div class="text-group">
+                    <h1 class="app-name">Anar</h1>
+                    <h2 class="app-subtitle">Wealth & Budget Manager</h2>
+                </div>
+            </div>
+
+            <a href="#" class="app-store-button">
+                <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&releaseDate=1600000000" alt="Download on the App Store">
+            </a>
+        </div>
+
+        <!-- 3. TOP RIGHT: Pricing (Marketing) -->
+        <div class="card corner-card pricing-card">
+            <div class="corner-content">
+                <!-- 
+                     UPDATED STAR ICON 
+                     Filled with Yellow, no stroke.
+                -->
+                <svg class="corner-icon" viewBox="0 0 24 24" fill="none" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="#FFCC00"></polygon>
+                </svg>
+                <h3>Simple Pricing</h3>
+                <p>Free to download. No hidden subscriptions.</p>
+            </div>
+        </div>
+        
+        <!-- 4. Net Worth -->
+        <div class="card feature-card">
+            <div class="card-content">
+                <h2>Net Worth</h2>
+                <p>Complete financial picture.</p>
+            </div>
+            <div class="image-wrapper">
+                <img src="assets/images/screen-networth.png" alt="Net Worth Screen">
+            </div>
+        </div>
+
+        <!-- 5. Portfolio -->
+        <div class="card feature-card">
+            <div class="card-content">
+                <h2>Portfolio</h2>
+                <p>Track stocks & crypto.</p>
+            </div>
+            <div class="image-wrapper">
+                <img src="assets/images/screen-portfolio.png" alt="Portfolio Screen">
+            </div>
+        </div>
+
+        <!-- 6. Dividends -->
+        <div class="card feature-card">
+            <div class="card-content">
+                <h2>Dividends</h2>
+                <p>Passive income tracker.</p>
+            </div>
+            <div class="image-wrapper">
+                <img src="assets/images/screen-dividends.png" alt="Dividends Screen">
+            </div>
+        </div>
+
+        <!-- 7. Budget -->
+        <div class="card feature-card">
+            <div class="card-content">
+                <h2>Budget</h2>
+                <p>Income & expenses.</p>
+            </div>
+            <div class="image-wrapper">
+                <img src="assets/images/screen-budget.png" alt="Budget Screen">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <a href="legal/terms.html">Terms & Conditions</a>
+        <span class="separator">•</span>
+        <a href="legal/privacy.html">Privacy Policy</a>
+        <span class="separator">•</span>
+        <span>&copy; 2025 Anar</span>
+    </footer>
+
+</body>
+</html>

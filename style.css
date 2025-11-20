@@ -1,0 +1,340 @@
+/* --- RESET & VARIABLES --- */
+:root {
+    --bg-color: #F5F5F7;
+    --card-bg: #FFFFFF;
+    --text-primary: #1D1D1F;
+    --text-secondary: #86868B;
+    --accent-blue: #0071e3;
+    --card-radius: 28px; 
+    --gap: 20px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    padding: 20px;
+    
+    /* NEW: Required for the gradient blob positioning */
+    position: relative;
+    overflow-x: hidden; /* Prevents horizontal scroll from the blur */
+}
+
+/* --- NEW: APPLE-STYLE MESH GRADIENT --- */
+body::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: -10%;
+    width: 80vw; /* Covers roughly the top-left quadrant */
+    height: 80vh;
+    z-index: -1; /* Puts it behind the content */
+    
+    /* The Magic: Overlapping radial gradients to create the "random" mix */
+    background: 
+        radial-gradient(circle at 0% 50%, #00C7BE 0%, transparent 40%), /* Mint (Pushed left & smaller) */
+        radial-gradient(circle at 30% 10%, #34C759 0%, transparent 40%), /* Green (Pushed up/left & smaller) */
+        radial-gradient(circle at 60% 40%, #FFCC00 0%, transparent 60%), /* Yellow (Larger spread) */
+        radial-gradient(circle at 40% 70%, #FF9500 0%, transparent 50%), /* Orange (Shifted down) */
+        radial-gradient(circle at 80% 10%, #FF3B30 0%, transparent 60%); /* Red (Larger spread) */
+        
+    /* Blurs them all together into a soft cloud */
+    filter: blur(120px); 
+    opacity: 0.5; /* Keeps it subtle and not overpowering */
+    pointer-events: none; /* Ensures you can click through it */
+}
+
+/* --- MAIN GRID CONTAINER --- */
+.bento-container {
+    display: grid;
+    /* 4 Equal Columns */
+    grid-template-columns: repeat(4, 1fr);
+    /* Row 1: Marketing/Header, Row 2: Features */
+    grid-template-rows: auto minmax(0, 1fr); 
+    gap: var(--gap);
+    
+    width: 100%;
+    max-width: 1400px;
+    height: 90vh; 
+    min-height: 800px; 
+    margin-bottom: 20px;
+}
+
+/* --- GENERIC CARD STYLES --- */
+.card {
+    background: var(--card-bg);
+    border-radius: var(--card-radius);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+    
+    /* UPDATED TRANSITION & PERFORMANCE FIXES */
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother "Apple-like" easing */
+    will-change: transform; /* Tells browser to prepare for movement */
+    transform: translateZ(0); /* Forces hardware acceleration (fixes Safari jitter) */
+    -webkit-font-smoothing: subpixel-antialiased; /* Keeps text crisp during movement */
+    
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-6px) translateZ(0); /* Moved up slightly more for better effect */
+    box-shadow: 0 12px 32px rgba(0,0,0,0.08); /* Added shadow growth for depth */
+}
+
+/* --- IDENTITY CARD (CENTER HEADER) --- */
+.identity-card {
+    grid-column: 2 / span 2; 
+    flex-direction: row; 
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 40px; 
+}
+
+.identity-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icon-wrapper {
+    width: 72px; 
+    height: 72px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background-color: #eee;
+    flex-shrink: 0;
+}
+
+.app-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.placeholder-icon {
+    background: linear-gradient(135deg, #e0e0e0 0%, #bdbdbd 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-group {
+    text-align: left;
+}
+
+.app-name {
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.app-subtitle {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.app-store-button img {
+    height: 40px;
+    width: auto;
+    transition: opacity 0.2s;
+}
+.app-store-button:hover img {
+    opacity: 0.8;
+}
+
+/* --- CORNER CARDS (PRIVACY & PRICING) --- */
+.corner-card {
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    text-align: center;
+    background: #FFFFFF; 
+}
+
+.corner-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.corner-icon {
+    width: 32px;
+    height: 32px;
+    /* Removed opacity: 0.8 so colors are vibrant */
+}
+
+.corner-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.corner-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    max-width: 200px; 
+}
+
+/* --- FEATURE CARDS --- */
+.feature-card {
+    padding-top: 24px;
+    align-items: center;
+    background: linear-gradient(to bottom, #ffffff 0%, #fafafa 100%);
+}
+
+.card-content {
+    margin-bottom: 16px;
+    text-align: center;
+    padding: 0 10px;
+}
+
+.feature-card h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.feature-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.image-wrapper {
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; 
+    padding: 0 20px; 
+    padding-bottom: 20px;
+}
+
+.image-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 12px; 
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+/* --- FOOTER --- */
+footer {
+    margin-top: auto;
+    padding: 20px;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+footer a {
+    color: var(--text-secondary);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.separator {
+    margin: 0 8px;
+    opacity: 0.5;
+}
+
+/* --- RESPONSIVENESS --- */
+
+/* Small Laptops / Tablets Landscape */
+@media (max-width: 1100px) {
+    .bento-container {
+        height: auto;
+        min-height: 0;
+        /* Switch to 2x2 Grid */
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto auto; 
+    }
+    
+    /* Header spans full width */
+    .identity-card {
+        grid-column: 1 / span 2; 
+        order: -2; 
+    }
+
+    /* Marketing cards sit below header */
+    .corner-card {
+        grid-column: auto; 
+        order: -1; 
+        height: 200px;
+    }
+    
+    .image-wrapper {
+        height: 400px; 
+    }
+}
+
+/* Mobile Phones */
+@media (max-width: 700px) {
+    .bento-container {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        gap: 20px;
+        margin-top: 10px;
+    }
+
+    /* MOBILE ORDERING MAGIC */
+    .identity-card {
+        order: -3; /* Highest Priority: Top */
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+        gap: 20px;
+    }
+
+    .corner-card.privacy-card {
+        order: -2; /* Second */
+        height: auto;
+        padding: 30px;
+    }
+    
+    .corner-card.pricing-card {
+        order: -1; /* Third */
+        height: auto;
+        padding: 30px;
+    }
+
+    .identity-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .text-group {
+        text-align: center;
+    }
+
+    .image-wrapper {
+        height: auto; 
+    }
+    
+    .image-wrapper img {
+        width: 100%; 
+    }
+}
