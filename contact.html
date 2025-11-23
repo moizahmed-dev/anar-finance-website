@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Anar</title>
     <style>
-        /* --- Design System (Matches main site) --- */
+        /* --- Design System --- */
         :root {
             --bg-color: #F5F5F7;
             --card-bg: #FFFFFF;
@@ -44,10 +44,7 @@
             transition: opacity 0.2s;
         }
 
-        .back-link:hover {
-            opacity: 0.7;
-            text-decoration: underline;
-        }
+        .back-link:hover { opacity: 0.7; text-decoration: underline; }
 
         /* --- Contact Card --- */
         .contact-card {
@@ -75,9 +72,7 @@
         }
 
         /* --- Form Elements --- */
-        .form-group {
-            margin-bottom: 20px;
-        }
+        .form-group { margin-bottom: 20px; }
 
         label {
             display: block;
@@ -91,12 +86,12 @@
             width: 100%;
             padding: 16px;
             border-radius: 12px;
-            border: 1px solid transparent; /* Invisible border normally */
+            border: 1px solid transparent;
             background-color: var(--input-bg);
             font-family: inherit;
             font-size: 1rem;
             color: var(--text-primary);
-            box-sizing: border-box; /* Ensures padding doesn't break width */
+            box-sizing: border-box;
             transition: all 0.2s ease;
         }
 
@@ -108,7 +103,7 @@
         }
 
         textarea {
-            resize: vertical; /* Allow user to resize height only */
+            resize: vertical;
             min-height: 120px;
         }
 
@@ -126,9 +121,7 @@
             margin-top: 10px;
         }
 
-        button:hover {
-            opacity: 0.9;
-        }
+        button:hover { opacity: 0.9; }
 
         /* --- Mobile Responsiveness --- */
         @media (max-width: 600px) {
@@ -140,7 +133,6 @@
 </head>
 <body>
 
-    <!-- Back Button -->
     <a href="index.html" class="back-link">
         &larr; Back to Home
     </a>
@@ -150,20 +142,21 @@
         <span class="subtitle">Questions? Feedback? We'd love to hear from you.</span>
 
         <!-- 
-            PROVIDER: FormSubmit.co (Free, Secure, No Sign-up needed)
-            ACTION: Points directly to your email.
+            PROVIDER: FormSubmit.co
+            ACTION: Sends email -> Redirects to thanks.html
         -->
-        <form action="https://formsubmit.co/moizahmed@anarfinance.ca" method="POST">
+        <form action="https://formsubmit.co/moizahmed.dev@gmail.com" method="POST">
             
-            <!-- Configuration: Subject Line of the email you receive -->
-            <input type="hidden" name="_subject" value="New Submission from Anar Website">
-            
-            <!-- Configuration: Turn off Captcha for cleaner UI (It still blocks bots in background) -->
+            <!-- CONFIGURATION -->
+            <input type="hidden" name="_subject" value="Anar App Inquiry">
             <input type="hidden" name="_captcha" value="false">
-
-            <!-- Configuration: Redirect back to your site after sending (Optional) 
-                 If removed, it shows a generic "Thank You" page from FormSubmit -->
-            <!-- <input type="hidden" name="_next" value="https://www.anarfinance.ca/thanks.html"> -->
+            <input type="hidden" name="_autoresponse" value="Thanks for contacting Anar! We received your message and will get back to you shortly.">
+            
+            <!-- REDIRECT: Sends user to this page on success -->
+            <input type="hidden" name="_next" value="https://www.anarfinance.ca/thanks.html">
+            
+            <!-- HONEYPOT (Spam Protection) -->
+            <input type="text" name="_honey" style="display:none">
 
             <div class="form-group">
                 <label for="name">Name</label>
